@@ -1,0 +1,519 @@
+/* ==========================================================================
+   Base & Reset - Fluid Typography & CSS Variables
+   ========================================================================== */
+:root {
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-bg: #edf3ed;
+  --color-primary: #2c604c;
+  --color-primary-hover: #24503f;
+  --color-accent: #40977a;
+  --color-text-dark: #244b3d;
+  --color-text-muted: #778a7d;
+  --color-weather-bg: #fff8df;
+  --color-weather-border: #e9dfbd;
+  --radius-scene: clamp(16px, 3vw, 28px);
+  --radius-btn: 12px;
+  --focus-ring: 3px solid #3c8f73;
+  --transition-fast: 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text-dark);
+  font-family: var(--font-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fluid container padding */
+main {
+  max-width: 1250px;
+  margin: auto;
+  padding: clamp(16px, 3.5vw, 36px) clamp(12px, 3vw, 24px);
+}
+
+/* ==========================================================================
+   Header - Fluid Hierarchy
+   ========================================================================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(12px, 2.5vw, 24px);
+  margin-bottom: clamp(14px, 2.5vw, 24px);
+}
+
+.eyebrow {
+  font-size: clamp(10px, 1vw, 11px);
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #738d7d;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 6px 0;
+  font-size: clamp(1.65rem, 3.8vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+
+header p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: clamp(13px, 1.2vw, 15px);
+}
+
+.weather {
+  padding: clamp(8px, 1.2vw, 11px) clamp(12px, 1.8vw, 18px);
+  background: var(--color-weather-bg);
+  border: 1px solid var(--color-weather-border);
+  border-radius: 25px;
+  font-size: clamp(11px, 1.1vw, 12px);
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px #d9cb9922;
+}
+
+/* ==========================================================================
+   Scene & Canvas - Fluid Responsive Aspect Ratio
+   ========================================================================== */
+.scene {
+  position: relative;
+  height: clamp(340px, 48vw, 570px);
+  overflow: hidden;
+  background: #d1edf4;
+  border: clamp(4px, 0.7vw, 7px) solid #ffffff;
+  border-radius: var(--radius-scene);
+  box-shadow: 0 18px 50px #35584018;
+  user-select: none;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   Status Panel & Trail Label
+   ========================================================================== */
+.status-panel {
+  position: absolute;
+  top: clamp(14px, 2.2vw, 24px);
+  left: clamp(14px, 2.2vw, 24px);
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: clamp(7px, 1vw, 9px) clamp(10px, 1.4vw, 14px);
+  border-radius: 20px;
+  background: #fffffff2;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: clamp(10px, 1vw, 11px);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 14px #264a3815;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transition: background-color var(--transition-fast);
+}
+
+.status-panel p {
+  color: #4a7575;
+  font-size: clamp(11px, 1.1vw, 12px);
+  font-weight: 500;
+  margin: 8px 3px;
+  text-shadow: 0 1px 2px #ffffffb0;
+}
+
+.trail-label {
+  position: absolute;
+  left: clamp(14px, 2.2vw, 24px);
+  bottom: clamp(14px, 2vw, 22px);
+  color: #ffffff;
+  font-size: clamp(9px, 0.95vw, 10px);
+  font-weight: 750;
+  letter-spacing: 2px;
+  pointer-events: none;
+  text-shadow: 0 1px 3px #1a3a2a40;
+}
+
+/* ==========================================================================
+   Vertical Slider & Track - Accessible & Touch Optimized
+   ========================================================================== */
+.slider-shell {
+  position: absolute;
+  top: 22%;
+  bottom: 18%;
+  right: clamp(10px, 1.8vw, 18px);
+  width: 44px;
+  background: #ffffffd4;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px #315e5222;
+  transition: transform var(--transition-fast);
+}
+
+.slider-shell::before,
+.slider-shell::after {
+  position: absolute;
+  left: 16px;
+  font-size: 12px;
+  color: #7b9a8e;
+  pointer-events: none;
+}
+
+.slider-shell::before {
+  content: "↑";
+  top: 6px;
+}
+
+.slider-shell::after {
+  content: "↓";
+  bottom: 6px;
+}
+
+.track {
+  position: absolute;
+  top: 28px;
+  bottom: 28px;
+  left: 19px;
+  width: 6px;
+  background: #d8e8df;
+  border-radius: 10px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+/* Generous touch target for mobile/tablet */
+.track::before {
+  content: "";
+  position: absolute;
+  inset: -18px -15px;
+}
+
+.fill {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 0;
+  background: #478f78;
+  border-radius: 10px;
+  pointer-events: none;
+  transition: height 0.05s linear;
+}
+
+.thumb {
+  position: absolute;
+  top: 100%;
+  left: -11px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 42px;
+  border-radius: 15px;
+  background: #ffffff;
+  border: 1px solid #d7e6dd;
+  box-shadow: 0 4px 12px #274d4430;
+  display: grid;
+  place-items: center;
+  color: #769889;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast), top 0.04s linear;
+}
+
+.thumb:hover {
+  box-shadow: 0 6px 16px #274d4440;
+  transform: translateY(-50%) scale(1.04);
+}
+
+.thumb:active {
+  cursor: grabbing;
+  transform: translateY(-50%) scale(0.98);
+  background: #f7faf8;
+}
+
+/* Keyboard First Accessible Focus */
+.thumb:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Toolbar & Metrics - Optimistic Responsive Layout
+   ========================================================================== */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(14px, 2.5vw, 24px);
+  padding: clamp(16px, 2.5vw, 24px) 4px;
+  flex-wrap: wrap;
+}
+
+.buttons {
+  display: flex;
+  gap: clamp(8px, 1.2vw, 12px);
+}
+
+button {
+  border: 1px solid #cfddd2;
+  border-radius: var(--radius-btn);
+  background: #ffffff;
+  color: #365b49;
+  padding: clamp(10px, 1.3vw, 13px) clamp(16px, 2.2vw, 24px);
+  font: inherit;
+  font-size: clamp(12px, 1.1vw, 13.5px);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 6px #274d4410;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px #274d4420;
+}
+
+button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 1px 3px #274d4420;
+}
+
+button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+button.primary {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+button.primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.metrics {
+  display: flex;
+  gap: clamp(18px, 3.5vw, 36px);
+  align-items: center;
+}
+
+.metric small {
+  display: block;
+  margin-bottom: 2px;
+  color: #84958a;
+  font-size: clamp(9px, 0.95vw, 10px);
+  font-weight: 750;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.metric strong {
+  font-size: clamp(16px, 1.6vw, 19px);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-dark);
+}
+
+/* ==========================================================================
+   Keyboard Shortcut Badges & Footer
+   ========================================================================== */
+.shortcuts-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  margin-top: 6px;
+  padding: 10px 14px;
+  background: #ffffff70;
+  border: 1px solid #dce8e0;
+  border-radius: 12px;
+  font-size: 11.5px;
+  color: #537566;
+}
+
+.shortcut-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #2c604c;
+  background: #ffffff;
+  border: 1px solid #c2d6cb;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px #00000010;
+}
+
+footer {
+  border-top: 1px solid #d6e1d7;
+  padding-top: 18px;
+  margin-top: 14px;
+  color: #7b8e7f;
+  font-size: clamp(11.5px, 1.1vw, 12.5px);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   Fluid Breakpoints (Only for layout shifts)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .weather {
+    display: none;
+  }
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .buttons {
+    width: 100%;
+  }
+  .buttons button {
+    flex: 1;
+    justify-content: center;
+  }
+  .metrics {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .shortcuts-bar {
+    font-size: 11px;
+    gap: 6px 10px;
+  }
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Centered "Start" Cloud Spectacle Button
+   ========================================================================== */
+.center-action-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cloud-start {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: clamp(12px, 1.4vw, 16px) clamp(28px, 3vw, 42px);
+  font-family: inherit;
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, #27624c 0%, #1a4535 100%);
+  border: 2px solid #ffffffea;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px #1e453645, 0 0 25px #63d1a840;
+  cursor: pointer;
+  user-select: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+  animation: floatButton 3.5s ease-in-out infinite;
+}
+
+.btn-cloud-start .cloud-icon {
+  font-size: 1.25em;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-cloud-start:hover {
+  transform: scale(1.08) translateY(-2px);
+  background: linear-gradient(135deg, #31785d 0%, #205541 100%);
+  box-shadow: 0 14px 40px #1e453660, 0 0 35px #63d1a860;
+  border-color: #ffffff;
+}
+
+.btn-cloud-start:hover .cloud-icon {
+  transform: scale(1.2) rotate(-8deg);
+}
+
+.btn-cloud-start:active,
+.btn-cloud-start.pulse {
+  transform: scale(0.94);
+  box-shadow: 0 4px 14px #1e453640;
+}
+
+.btn-cloud-start:focus-visible {
+  outline: 3px solid #7de3be;
+  outline-offset: 4px;
+}
+
+@keyframes floatButton {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ==========================================================================
+   Full-Screen Cloud Overlay Canvas
+   ========================================================================== */
+.cloud-overlay-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+

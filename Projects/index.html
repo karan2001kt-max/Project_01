@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Little Trails — Boy Slider</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <div class="eyebrow">LITTLE TRAILS / PLAYGROUND</div>
+        <h1>A little downhill joy.</h1>
+        <p>Follow the hills. Find your rhythm. Enjoy the ride.</p>
+      </div>
+      <div class="weather">☀ &nbsp; A good day to wander</div>
+    </header>
+
+    <section class="scene" id="scene">
+      <canvas id="canvas"
+        role="img"
+        aria-label="A cartoon child running and sliding along a curved hillside trail">
+      </canvas>
+
+      <div class="status-panel">
+        <div class="badge">
+          <span class="dot" id="dot"></span>
+          <span id="state">RUNNING</span>
+        </div>
+        <p id="message">Little steps, big adventures.</p>
+      </div>
+
+      <div class="slider-shell">
+        <div class="track" id="track">
+          <div class="fill" id="fill"></div>
+          <div class="thumb" id="thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Trail progress"
+            aria-orientation="vertical"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0">≡</div>
+        </div>
+      </div>
+
+      <!-- Centered "Start" Cloud Spectacle Button -->
+      <div class="center-action-wrapper" id="centerActionWrapper">
+        <button class="btn-cloud-start" id="cloudStartBtn" aria-label="Trigger full-screen cloud transition">
+          <span class="cloud-icon" aria-hidden="true">☁</span>
+          <span>Start</span>
+        </button>
+      </div>
+
+      <div class="trail-label">THE MEADOW LOOP &nbsp; / &nbsp; 01</div>
+    </section>
+
+    <div class="toolbar">
+      <div class="buttons">
+        <button class="primary" id="play" aria-label="Pause animation (Space)">Ⅱ &nbsp; Pause</button>
+        <button id="reset" aria-label="Reset animation (R)">↺ &nbsp; Reset</button>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <small>PROGRESS</small>
+          <strong id="progress">0%</strong>
+        </div>
+        <div class="metric">
+          <small>PACE</small>
+          <strong id="pace">1.0×</strong>
+        </div>
+        <div class="metric">
+          <small>TERRAIN</small>
+          <strong id="terrain">Uphill</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts Bar (A11y & Power Users) -->
+    <div class="shortcuts-bar">
+      <span class="shortcut-pill"><kbd>Space</kbd> Play/Pause</span>
+      <span class="shortcut-pill"><kbd>R</kbd> Reset</span>
+      <span class="shortcut-pill"><kbd>↑</kbd> <kbd>↓</kbd> / <kbd>Scroll</kbd> Scrub</span>
+      <span class="shortcut-pill"><kbd>1</kbd>-<kbd>9</kbd> Jump to 10%-90%</span>
+    </div>
+
+    <footer>
+      Drag the vertical handle upward to advance, or scroll anywhere over the scene.
+      Use keyboard arrow keys or number keys to navigate with precision.
+      The trail loops smoothly and automatically.
+    </footer>
+  </main>
+
+  <!-- Screen Reader Live Announcements -->
+  <div id="live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Modular Scripts -->
+  <script src="js/trail.js" defer></script>
+  <script src="js/landscape.js" defer></script>
+  <script src="js/character.js" defer></script>
+  <script src="js/particles.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/cloudTransition.js" defer></script>
+</body>
+</html>
